@@ -8,13 +8,11 @@ import { store } from './store';
 //Importo i componenti figli
 import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
-import AppCard from './components/AppCard.vue'
 
 export default {
   components: {
     AppHeader,
     AppMain,
-    AppCard,
   },
   data() {
     return {
@@ -24,17 +22,25 @@ export default {
   methods: {
     getFilmCard() {
 
-      axios.get()
-        .then((res => {
+      let filmURL = store.apiCallMovie;
 
-        }))
-        .catch((err => {
-          console.log("Questi sono gli errori", err);
-        }));
+      //Se non e' vuoto l'input, mi compone l'url dell'api relativa alla richiesta del film dell'utente
+      if (store.searchText !== '') {
+        filmURL += `?${store.apiKey}&query=${store.searchText}`
+
+        //Chiamata axios per il film
+        axios.get(filmURL)
+          .then((res => {
+            store.filmList = res.data.results;
+          }))
+          .catch((err => {
+            console.log("Questi sono gli errori", err);
+          }));
+      }
     }
   },
   created() {
-
+    this.getFilmCard();
   }
 }
 
@@ -42,7 +48,7 @@ export default {
 
 <template>
   <!-- Header -->
-  <AppHeader />
+  <AppHeader @search="getFilmCard" />
 
   <!-- Main -->
   <AppMain />
