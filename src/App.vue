@@ -37,6 +37,7 @@ export default {
         axios.get(filmURL)
           .then((res => {
             store.filmList = res.data.results;
+            console.log(store.filmList);
           }))
           .catch((err => {
             console.log("Questi sono gli errori", err);

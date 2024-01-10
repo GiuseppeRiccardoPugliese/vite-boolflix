@@ -3,7 +3,8 @@
 export default {
     name: 'AppCard',
     props: {
-        info: Object
+        info: Object,
+        myImg: String
     },
     data() {
         return {
@@ -22,21 +23,39 @@ export default {
 <template>
     <!-- FILM -->
     <div class="card_container my-5">
-        <!-- TITOLO -->
-        <h6>Title: {{ info.title || info.name }}</h6>
 
-        <!-- TITOLO ORIGINALE -->
-        <h6>Original Title: {{ info.original_title || info.original_name }}</h6>
+        <!-- FrontSide -->
+        <div class="card_side front">
+            <!-- IMG -->
+            <img v-if="info.poster_path !== null" :src="myImg + info.poster_path"
+                :alt="info.original_title || info.original_name">
 
-        <!-- LINGUA -->
-        <div>
-            <img class="flag"
-                :src="flags[info.original_language] ? flags[info.original_language] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gay_Pride_Flag.svg/1920px-Gay_Pride_Flag.svg.png'"
-                :alt="info.original_language">
+            <!-- Se non ho l'img -->
+            <div v-if="info.poster_path === null">
+                <h4>NO IMAGE FOUND FOR</h4> {{ info.title || info.name }}
+            </div>
+
         </div>
 
-        <!-- VOTO -->
-        <h6>Average Vote: {{ info.vote_average }}</h6>
+        <!-- BackSide -->
+        <div class="card_side back">
+            <!-- TITOLO -->
+            <h6>Title: {{ info.title || info.name }}</h6>
+
+            <!-- TITOLO ORIGINALE -->
+            <h6>Original Title: {{ info.original_title || info.original_name }}</h6>
+
+            <!-- LINGUA -->
+            <div>
+                <img class="flag"
+                    :src="flags[info.original_language] ? flags[info.original_language] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gay_Pride_Flag.svg/1920px-Gay_Pride_Flag.svg.png'"
+                    :alt="info.original_language">
+            </div>
+
+            <!-- VOTO -->
+            <h6>Average Vote: {{ info.vote_average }}</h6>
+        </div>
+
     </div>
 
     <!-- TV SERIES -->
