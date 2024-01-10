@@ -15,6 +15,11 @@ export default {
                 fr: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/396px-Flag_of_France.svg.png',
             }
         }
+    },
+    methods: {
+        arrotonda(vote) {
+            return Math.ceil(vote);
+        }
     }
 }
 
@@ -26,6 +31,7 @@ export default {
 
         <!-- FrontSide -->
         <div class="card_side front">
+
             <!-- IMG -->
             <img v-if="info.poster_path !== null" :src="myImg + info.poster_path"
                 :alt="info.original_title || info.original_name">
@@ -39,21 +45,35 @@ export default {
 
         <!-- BackSide -->
         <div class="card_side back">
+
             <!-- TITOLO -->
-            <h6>Title: {{ info.title || info.name }}</h6>
+            <div class="info">
+                <h6>Title: {{ info.title || info.name }}</h6>
+            </div>
 
             <!-- TITOLO ORIGINALE -->
-            <h6>Original Title: {{ info.original_title || info.original_name }}</h6>
+            <div class="info">
+                <h6>Original Title: {{ info.original_title || info.original_name }}</h6>
+            </div>
 
             <!-- LINGUA -->
-            <div>
+            <div class="info">
                 <img class="flag"
                     :src="flags[info.original_language] ? flags[info.original_language] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gay_Pride_Flag.svg/1920px-Gay_Pride_Flag.svg.png'"
                     :alt="info.original_language">
             </div>
 
             <!-- VOTO -->
-            <h6>Average Vote: {{ info.vote_average }}</h6>
+            <div class="info">
+
+                <!-- Ciclo il numero del voto richiamando la funzione che arrotonda SEMPRE per eccesso e la divido per 2. Passando l'icon per farsi' che escano tot stelline piene a seconda del voto -->
+                <span v-for="number in this.arrotonda(info.vote_average / 2)"><i class="fa-solid fa-star"></i></span>
+
+                <!-- Partendo da 5, sottraggo il voto medio arrotondato per eccesso grazie alla funzione e lo divido per 2. Passando l'icon della stella vuota a seconda del numero sottratto -->
+                <span v-for="number in (5 - this.arrotonda(info.vote_average / 2))"><i
+                        class="fa-regular fa-star"></i></span>
+            </div>
+
         </div>
 
     </div>
