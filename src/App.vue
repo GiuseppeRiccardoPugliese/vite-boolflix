@@ -36,6 +36,7 @@ export default {
           .catch((err => {
             console.log("Questi sono gli errori", err);
           }));
+        // store.searchText = '';
       }
     }
   },
