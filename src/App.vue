@@ -26,7 +26,7 @@ export default {
 
       //Se non e' vuoto l'input, mi compone l'url dell'api relativa alla richiesta del film dell'utente
       if (store.searchText !== '') {
-        filmURL += `?${store.apiKey}&query=${store.searchText}`
+        filmURL += `?${store.apiKey}&query=${store.searchText}`;
 
         //Chiamata axios per il film
         axios.get(filmURL)

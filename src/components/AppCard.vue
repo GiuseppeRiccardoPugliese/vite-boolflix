@@ -11,16 +11,16 @@ export default {
 
 <template>
     <!-- TITOLO -->
-    <span>{{ info.title }}</span>
+    <div>Title: {{ info.title }}</div>
 
     <!-- TITOLO ORIGINALE -->
-    <span>{{ info.original_title }}</span>
+    <div>Original Title: {{ info.original_title }}</div>
 
     <!-- LINGUA -->
-    <span>{{ info.original_language }}</span>
+    <div>Original Lang: {{ info.original_language }}</div>
 
     <!-- VOTO -->
-    <span>{{ info.vote_average }}</span>
+    <div>Average Vote: {{ info.vote_average }}</div>
 </template>
 
 <style lang="scss" scoped>
