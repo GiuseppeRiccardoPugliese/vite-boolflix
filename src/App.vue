@@ -20,15 +20,20 @@ export default {
     }
   },
   methods: {
-    getFilmCard() {
+    getFilmAndSeries() {
 
+      //Dichiaro le mie variabili
       let filmURL = store.apiCallMovie;
+      let seriesURL = store.apiCallSeries;
 
       //Se non e' vuoto l'input, mi compone l'url dell'api relativa alla richiesta del film dell'utente
       if (store.searchText !== '') {
-        filmURL += `?${store.apiKey}&query=${store.searchText}`;
 
-        //Chiamata axios per il film
+        //Compongo il mio URL
+        filmURL += `?${store.apiKey}&query=${store.searchText}`;
+        seriesURL += `?${store.apiKey}&query=${store.searchText}`;
+
+        //Chiamata axios per il FILM
         axios.get(filmURL)
           .then((res => {
             store.filmList = res.data.results;
@@ -36,12 +41,22 @@ export default {
           .catch((err => {
             console.log("Questi sono gli errori", err);
           }));
+
+        axios.get(seriesURL)
+          .then((res => {
+            store.seriesList = res.data.results;
+          }))
+          .catch((err => {
+            console.log("Questi sono gli errori", err);
+          }));
+
+        //RESET (input)
         store.searchText = '';
       }
-    }
+    },
   },
   created() {
-    this.getFilmCard();
+    this.getFilmAndSeries();
   }
 }
 
@@ -49,7 +64,7 @@ export default {
 
 <template>
   <!-- Header -->
-  <AppHeader @search="getFilmCard" />
+  <AppHeader @search="getFilmAndSeries" />
 
   <!-- Main -->
   <AppMain />

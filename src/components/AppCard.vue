@@ -20,12 +20,13 @@ export default {
 </script>
 
 <template>
+    <!-- FILM -->
     <div class="card_container my-5">
         <!-- TITOLO -->
-        <h6>Title: {{ info.title }}</h6>
+        <h6>Title: {{ info.title || info.name }}</h6>
 
         <!-- TITOLO ORIGINALE -->
-        <h6>Original Title: {{ info.original_title }}</h6>
+        <h6>Original Title: {{ info.original_title || info.original_name }}</h6>
 
         <!-- LINGUA -->
         <div>
@@ -37,6 +38,8 @@ export default {
         <!-- VOTO -->
         <h6>Average Vote: {{ info.vote_average }}</h6>
     </div>
+
+    <!-- TV SERIES -->
 </template>
 
 <style lang="scss" scoped>
