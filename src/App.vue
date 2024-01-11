@@ -57,9 +57,6 @@ export default {
       }
     },
   },
-  created() {
-    this.getFilmAndSeries();
-  }
 }
 
 </script>
