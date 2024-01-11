@@ -43,6 +43,7 @@ export default {
             console.log("Questi sono gli errori", err);
           }));
 
+        //Chiamata axios per le SERIE TV
         axios.get(seriesURL)
           .then((res => {
             store.seriesList = res.data.results;
@@ -67,8 +68,11 @@ export default {
   <!-- Header -->
   <AppHeader @search="getFilmAndSeries" />
 
-  <!-- Main -->
-  <AppMain />
+  <div class="container">
+
+    <!-- Main -->
+    <AppMain />
+  </div>
 </template>
 
 <style lang="scss">

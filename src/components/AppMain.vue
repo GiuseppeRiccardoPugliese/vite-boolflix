@@ -21,17 +21,19 @@ export default {
 
 <template>
     <!-- Sect for FILM -->
-    <section v-if="store.filmList.length !== 0">
-        <h3>Film</h3>
-        <div>
+    <section class="my-2" v-if="store.filmList.length !== 0">
+        <h3 class="text-danger my-3">Film</h3>
+
+        <div class="row gy-4 justify-content-center">
             <AppCard v-for="film in store.filmList" :key="film.id" :info="film" :myImg="store.apiCallPhoto" />
         </div>
     </section>
 
     <!-- Sect for TV series -->
-    <section v-if="store.seriesList.length !== 0">
-        <h3>TV Series</h3>
-        <div>
+    <section class="my-2" v-if="store.seriesList.length !== 0">
+        <h3 class="text-danger my-3">TV Series</h3>
+
+        <div class="row gy-4 justify-content-center">
             <AppCard v-for="tvSeries in store.seriesList" :key="tvSeries.id" :info="tvSeries" :myImg="store.apiCallPhoto" />
         </div>
     </section>
