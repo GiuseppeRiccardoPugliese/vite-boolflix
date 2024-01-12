@@ -77,6 +77,11 @@ export default {
                             class="fa-regular fa-star"></i></span>
                 </div>
 
+                <!-- OverView -->
+                <div class="info">
+                    <h6>OverView: {{ info.overview }}</h6>
+                </div>
+
             </div>
 
         </div>
@@ -102,7 +107,7 @@ export default {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         overflow: hidden;
-        transition: transform 0.5s ease;
+        transition: transform 1s ease;
 
         img {
             width: 100%;
@@ -111,11 +116,9 @@ export default {
         }
 
         .info {
-            padding: 1rem;
+            padding: 0.5rem;
         }
     }
-
-
 
     .back {
         transform: rotateY(180deg);
@@ -127,6 +130,10 @@ export default {
         backface-visibility: hidden;
         background-color: #fff;
         transform-style: preserve-3d;
+
+        h6 {
+            margin: 0;
+        }
     }
 
     &:hover .front {
