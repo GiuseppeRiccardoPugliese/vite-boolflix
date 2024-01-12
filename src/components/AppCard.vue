@@ -39,8 +39,9 @@ export default {
                     :alt="info.original_title || info.original_name">
 
                 <!-- Se non ho l'img -->
-                <div v-if="info.poster_path === null">
-                    <h4>NO IMAGE FOUND FOR</h4> {{ info.title || info.name }}
+                <div class="d-flex h-100 justify-content-center align-items-center bg-warning-subtle"
+                    v-if="info.poster_path === null">
+                    <h4 class="text-center">NO IMAGE FOUND FOR: &nbsp; {{ info.title || info.name }}</h4>
                 </div>
 
             </div>
@@ -101,6 +102,7 @@ export default {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         overflow: hidden;
+        transition: transform 0.5s ease;
 
         img {
             width: 100%;
@@ -113,9 +115,7 @@ export default {
         }
     }
 
-    .front {
-        transform: rotateY(0deg);
-    }
+
 
     .back {
         transform: rotateY(180deg);
@@ -126,6 +126,7 @@ export default {
         height: 100%;
         backface-visibility: hidden;
         background-color: #fff;
+        transform-style: preserve-3d;
     }
 
     &:hover .front {

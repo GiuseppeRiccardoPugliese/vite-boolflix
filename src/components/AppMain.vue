@@ -22,7 +22,7 @@ export default {
 <template>
     <!-- Sect for FILM -->
     <section class="my-2" v-if="store.filmList.length !== 0">
-        <h3 class="text-danger my-3">Film</h3>
+        <h2 class="text-danger fw-bold my-3">Film</h2>
 
         <div class="row gy-4 justify-content-center">
             <AppCard v-for="film in store.filmList" :key="film.id" :info="film" :myImg="store.apiCallPhoto" />
@@ -31,7 +31,7 @@ export default {
 
     <!-- Sect for TV series -->
     <section class="my-2" v-if="store.seriesList.length !== 0">
-        <h3 class="text-danger my-3">TV Series</h3>
+        <h2 class="text-danger fw-bold my-3">TV Series</h2>
 
         <div class="row gy-4 justify-content-center">
             <AppCard v-for="tvSeries in store.seriesList" :key="tvSeries.id" :info="tvSeries" :myImg="store.apiCallPhoto" />
