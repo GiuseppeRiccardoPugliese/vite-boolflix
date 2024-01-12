@@ -47,7 +47,7 @@ export default {
             </div>
 
             <!-- BackSide -->
-            <div class="card_side back">
+            <div class="card_side back d-flex flex-column">
 
                 <div>
                     <!-- TITOLO -->
@@ -80,10 +80,11 @@ export default {
                     </div>
                 </div>
 
-                <div class="overflow-y-scroll h-100">
+                <div class="overflow-y-scroll flex-grow-1">
                     <!-- OverView -->
                     <div class="info">
-                        <h6>OverView: {{ info.overview }}</h6>
+                        <h6 v-if="info.overview === ''">NO OVERVIEW FOUND</h6>
+                        <h6 v-else>OverView: {{ info.overview }}</h6>
                     </div>
                 </div>
 
