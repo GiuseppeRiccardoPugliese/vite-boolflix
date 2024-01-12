@@ -49,37 +49,42 @@ export default {
             <!-- BackSide -->
             <div class="card_side back">
 
-                <!-- TITOLO -->
-                <div class="info">
-                    <h6>Title: {{ info.title || info.name }}</h6>
+                <div>
+                    <!-- TITOLO -->
+                    <div class="info">
+                        <h6>Title: {{ info.title || info.name }}</h6>
+                    </div>
+
+                    <!-- TITOLO ORIGINALE -->
+                    <div class="info">
+                        <h6>Original Title: {{ info.original_title || info.original_name }}</h6>
+                    </div>
+
+                    <!-- LINGUA -->
+                    <div class="info">
+                        <img class="flag"
+                            :src="flags[info.original_language] ? flags[info.original_language] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gay_Pride_Flag.svg/1920px-Gay_Pride_Flag.svg.png'"
+                            :alt="info.original_language">
+                    </div>
+
+                    <!-- VOTO -->
+                    <div class="info">
+
+                        <!-- Ciclo il numero del voto richiamando la funzione che arrotonda SEMPRE per eccesso e la divido per 2. Passando l'icon per farsi' che escano tot stelline piene a seconda del voto -->
+                        <span v-for="number in this.arrotonda(info.vote_average / 2)"><i
+                                class="fa-solid fa-star"></i></span>
+
+                        <!-- Partendo da 5, sottraggo il voto medio arrotondato per eccesso grazie alla funzione e lo divido per 2. Passando l'icon della stella vuota a seconda del numero sottratto -->
+                        <span v-for="number in (5 - this.arrotonda(info.vote_average / 2))"><i
+                                class="fa-regular fa-star"></i></span>
+                    </div>
                 </div>
 
-                <!-- TITOLO ORIGINALE -->
-                <div class="info">
-                    <h6>Original Title: {{ info.original_title || info.original_name }}</h6>
-                </div>
-
-                <!-- LINGUA -->
-                <div class="info">
-                    <img class="flag"
-                        :src="flags[info.original_language] ? flags[info.original_language] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gay_Pride_Flag.svg/1920px-Gay_Pride_Flag.svg.png'"
-                        :alt="info.original_language">
-                </div>
-
-                <!-- VOTO -->
-                <div class="info">
-
-                    <!-- Ciclo il numero del voto richiamando la funzione che arrotonda SEMPRE per eccesso e la divido per 2. Passando l'icon per farsi' che escano tot stelline piene a seconda del voto -->
-                    <span v-for="number in this.arrotonda(info.vote_average / 2)"><i class="fa-solid fa-star"></i></span>
-
-                    <!-- Partendo da 5, sottraggo il voto medio arrotondato per eccesso grazie alla funzione e lo divido per 2. Passando l'icon della stella vuota a seconda del numero sottratto -->
-                    <span v-for="number in (5 - this.arrotonda(info.vote_average / 2))"><i
-                            class="fa-regular fa-star"></i></span>
-                </div>
-
-                <!-- OverView -->
-                <div class="info">
-                    <h6>OverView: {{ info.overview }}</h6>
+                <div class="overflow-y-scroll h-100">
+                    <!-- OverView -->
+                    <div class="info">
+                        <h6>OverView: {{ info.overview }}</h6>
+                    </div>
                 </div>
 
             </div>
