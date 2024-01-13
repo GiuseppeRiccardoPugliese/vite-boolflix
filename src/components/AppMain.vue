@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-    <h2 v-if="store.filmList && store.seriesList == 0">Ricerca un film oppure una serie TV</h2>
+    <h2 v-if="store.filmList.length === 0 && store.seriesList.length === 0">Ricerca un film oppure una serie TV</h2>
 
     <!-- Sect for FILM -->
     <section class="my-2" v-if="store.filmList.length !== 0">
